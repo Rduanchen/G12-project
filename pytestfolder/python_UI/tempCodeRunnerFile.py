@@ -1,2 +1,2 @@
-window=win()
-window.mainloop()
+start=0
+enumerate

@@ -8,11 +8,35 @@
 </head>
 <body>
     <div id="index_block"></div>
-    <button onclick="hello()"><a>get data</datagrid></a></button>
+    <button onclick="link_teacher_data()"><a>get data</datagrid></a></button>
     
 </body>
 <script>
-var v='<iframe src="https://ap3.ragic.com/haisann/forms2/1?webview&webaction=form&ver=new&dfCheckbox" width="100%" height="600px"></iframe>';
-document.getElementById('index_block').innerHTML(v);
+    function link_teacher_data(){
+        var teacher_data='';
+        var name=[];
+        var email=[];
+        function get_teacher_data(){
+            var test = new XMLHttpRequest();
+            test.open('GET','https://ap3.ragic.com/haisann/forms5/1?api=true');
+            test.send(null);
+            test.onload=function(){
+                if(test.status==200){
+                    teacher_data=test.responseText;
+                   return test.responseText;
+                };
+            };
+            console.log(data);
+        };
+        get_teacher_data();
+        document.write(teacher_data);
+        // console.log(typeof(teacher_data));
+
+        // for (var i in teacher_data){
+        //         name.push(teacher_data[i]['老師名稱']);
+        //         email.push([i]['老師電子郵件']);
+        //   };
+        //     document.write(name,email)
+        };  
 </script>
 </html>

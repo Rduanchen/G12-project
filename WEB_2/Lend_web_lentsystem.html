@@ -100,23 +100,22 @@
     $(document).ready(function(){
         loadragicdata();
     });
-    // // headers:{"Authorization":"Basic cEg1bCtoV040TFBzYVA3REs1cGJBUW5mSjUwWm1kOExrRXVWenkzM3R0V0krVGE0UDlkOFpJUXlKSEdsektUUjR2ZXgxV21vSXVjPQ=="},
+  
     function loadragicdata(){
-        // $.ajax({
-        //     url:'https://ap3.ragic.com/haisann/forms2/1',
-        //     method:'get',
-        //     dataType:'json',
-        //     success: function(data){
-        //         console.log(data);
-        //     },
-        // })
-        url='https://ap3.ragic.com/haisann/forms2/1';
-        $.getJSON(url,function(data){
-            console.log(data);
-       })
+        $.ajax({
+            url:'https://ap3.ragic.com/haisann/forms2/1',
+            method:'get',
+            dataType:'json',
+            success: function(data){
+                console.log(data);
+            },
+        })
+
     };
+    //load time information
     var today= new Date();
     var time=today.getFullYear()+'/'+(today.getMonth()+1)+'/'+today.getDate();
+
     function append_a_data(){
         var $form=$('#general_form').clone();
         $form.insertAfter('#general_form');
@@ -124,6 +123,7 @@
     function delete_data(){
         var $form=$('#general_form').remove();
     };
+
     function get_form_var(){
         push_data={};
         push_data['1000138']=$('#Rent_form_name').val();//借用人姓名
@@ -158,17 +158,29 @@
                };
             },
         });
-        $.ajax({
-            url:'https://ap3.ragic.com/haisann/forms2/1?api=true',
-            method:'get',
-            dataType: 'json',
-            success: function (data) {
-               if (data['status']=='SUCCESS'){
-                    alert('成功爬取');
-               };
-            },
-        });
-
+        // 送出表單
+        // function link_teacher_data(){
+        // var teacher_data;
+        // var name=[];
+        // var email=[];
+        //     $.ajax({
+        //         url:'https://ap3.ragic.com/haisann/forms5/1?api=true',
+        //         method:'get',
+        //         dataType: 'json',
+        //         success: function (data) {
+        //         if (data['status']=='SUCCESS'){
+        //                 alert('成功爬取');
+        //         };
+        //         },
+        //     });
+        //     for (var i in teacher_data){
+        //         name.push(teacher_data[i]['老師名稱']);
+        //         email.push([i]['老師電子郵件']);
+        //     };
+        // console.log(name);
+        // console.log(email);
+        // };  
+        // 爬老師產資料
     };
 </script>
 </html>
