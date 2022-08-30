@@ -159,27 +159,28 @@
             },
         });
         // 送出表單
-        // function link_teacher_data(){
-        // var teacher_data;
-        // var name=[];
-        // var email=[];
-        //     $.ajax({
-        //         url:'https://ap3.ragic.com/haisann/forms5/1?api=true',
-        //         method:'get',
-        //         dataType: 'json',
-        //         success: function (data) {
-        //         if (data['status']=='SUCCESS'){
-        //                 alert('成功爬取');
-        //         };
-        //         },
-        //     });
-        //     for (var i in teacher_data){
-        //         name.push(teacher_data[i]['老師名稱']);
-        //         email.push([i]['老師電子郵件']);
-        //     };
-        // console.log(name);
-        // console.log(email);
-        // };  
+        function link_teacher_data(){
+        var teacher_data;
+        var name=[];
+        var email=[];
+            $.ajax({
+                url:'https://ap3.ragic.com/haisann/forms5/1?api=true',
+                method:'get',
+                dataType:'json',
+                success: function (data) {
+                    if (data['status']=='SUCCESS'){
+                            alert('成功爬取');
+                            console.log(data);
+                    };
+                },
+            });
+            // for (var i in teacher_data){
+            //     name.push(teacher_data[i]['老師名稱']);
+            //     email.push([i]['老師電子郵件']);
+            // };
+            // console.log(name);
+            // console.log(email);
+        };  
         // 爬老師產資料
     };
 </script>

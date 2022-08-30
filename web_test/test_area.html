@@ -9,12 +9,11 @@
 <body>
     <div id="index_block"></div>
     <button onclick="hello()"><a>get data</a></button>
-    <iframe src="https://ap3.ragic.com/haisann/report/display?reportwv&id=14" sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin" style="border:none;overflow-x:hidden;overflow-y:hidden;width:100%;height:100vh;"></iframe>
 
     <script>
     function hello(){
     $.ajax({
-        url:'https://ap3.ragic.com/haisann/report/display?reportwv&id=14',
+        url:'https://raw.githubusercontent.com/Rduanchen/hserpsystem/main/Ragic_iframe.html',
         method:'get',
         dataType:'html',
         success:function(data){
