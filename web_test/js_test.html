@@ -4,39 +4,88 @@
     <title>js test</title>
     <meta charset="utf-8">
     <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
-
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
 </head>
 <body>
-    <div id="index_block"></div>
-    <button onclick="link_teacher_data()"><a>get data</datagrid></a></button>
-    
+<form>
+    <div class="row" id="general_form">
+        <div class="col-2">
+        <label for="Rent_form_reason" class="form-label">物品編號</label>
+        <input type="text" class="form-control" id="Rent_form_g_ID"  value="1234" disabled readonly >
+        </div>
+        <div class="col-2">
+        <label for="Rent_form_reason" class="form-label">物品名稱</label>
+        <input type="text" class="form-control" placeholder="報告使用" id="Rent_form_g_name">
+        </div>
+        <div class="col-2">
+        <label for="Rent_form_reason" class="form-label">庫存數量</label>
+        <input type="text" class="form-control" id="Rent_form_g_stock" value="7890" disabled readonly>
+        </div>
+        <div class="col-2">
+        <label for="Rent_form_reason" class="form-label">借用數量</label>
+        <input type="text" class="form-control" placeholder="報告使用" id="Rent_form_quantity">
+        </div>
+        <div class="col-2">
+        <label for="Rent_form_reason" class="form-label">備註</label>
+        <input type="text" class="form-control" placeholder="報告使用" id="Rent_form_note">
+        </div>
+        <div class="col-2">
+            <button type="button" class="btn btn-primary btn-block" id="delete_" onclick="delete_data(this.id)">刪除</button>
+        </div>
+        
+    </div>
+</div>
+
+
+</form>
+<div class="row">
+    <hr>
+    <button type="button" class="btn btn-primary btn-block" onclick="clone_and_change_id()">新增一筆資料</button>
+</div>
+<div class="row">
+    <hr>
+    <button type="button" class="btn btn-primary btn-block" onclick="get_all_sub_val()">提交</button>
+</div>
 </body>
 <script>
-    function link_teacher_data(){
-        var teacher_data='';
-        var name=[];
-        var email=[];
-        function get_teacher_data(){
-            var test = new XMLHttpRequest();
-            test.open('GET','https://ap3.ragic.com/haisann/forms5/1?api=true');
-            test.send(null);
-            test.onload=function(){
-                if(test.status==200){
-                    teacher_data=test.responseText;
-                   return test.responseText;
-                };
-            };
-            console.log(data);
-        };
-        get_teacher_data();
-        document.write(teacher_data);
-        // console.log(typeof(teacher_data));
+    var cloneCount=2;
 
-        // for (var i in teacher_data){
-        //         name.push(teacher_data[i]['老師名稱']);
-        //         email.push([i]['老師電子郵件']);
-        //   };
-        //     document.write(name,email)
-        };  
+    function clone_and_change_id(){
+        var $html=$('#general_form').clone().attr('id', 'general_form'+ cloneCount).insertAfter($('[id^=general_form]:last'));
+        $('#general_form'+ cloneCount).find('#Rent_form_g_ID').attr('id','Rent_form_g_ID'+cloneCount);
+        $('#general_form'+ cloneCount).find('#Rent_form_g_name').attr('id','#Rent_form_g_name'+cloneCount);
+        $('#general_form'+ cloneCount).find('#Rent_form_g_stock').attr('id','Rent_form_g_stock'+cloneCount);
+        $('#general_form'+ cloneCount).find('#Rent_form_quantity').attr('id','Rent_form_quantity'+cloneCount);
+        $('#general_form'+ cloneCount).find('#Rent_form_note').attr('id','Rent_form_note'+cloneCount);
+        $('#general_form'+ cloneCount).find('#delete_1').attr('id','delete_'+cloneCount);
+        cloneCount++;
+    }
+    var sub_val={};
+    function get_all_sub_val(){
+        var sub_id_row=1;
+        $('div[id^=general_form]').each(
+            function(){
+            console.log($(this).attr('id'));
+            sub_val['1000144_-'+sub_id_row]=$(this).find('input[id^=Rent_form_g_ID]').val();
+            sub_val['1000143_-'+sub_id_row]=$(this).find('input[id^=Rent_form_g_name]').val();
+            sub_val['1000376_-'+sub_id_row]=$(this).find('input[id^=Rent_form_g_stock]').val();
+            sub_val['1000145_-'+sub_id_row]=$(this).find('input[id^=Rent_form_quantity]').val();
+            sub_val['1000379_-'+sub_id_row]=$(this).find('input[id^=Rent_form_note]').val();
+            sub_id_row++;
+            }
+        )
+        console.log(sub_id_row);
+        console.log(sub_val)
+    }
+    function delete_data($id){
+        console.log($id);
+        console.log(typeof($id));
+        $('#'+$id).parent().parent().remove()
+
+    }
+
 </script>
 </html>
+
+
+

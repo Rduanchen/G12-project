@@ -5,6 +5,9 @@
     <meta charset="utf-8">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js" integrity="sha256-xLD7nhI62fcsEZK2/v8LsBcb4lG7dgULkuXoXB/j91c=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js" integrity="sha256-6XMVI0zB8cRzfZjqKcD01PBsAy3FlDASrlC8SxCpInY=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="test.css">
 
 </head>
 <body>
@@ -58,23 +61,23 @@
             <div class="row" id="general_form">
                 <div class="col-2">
                 <label for="Rent_form_reason" class="form-label">物品編號</label>
-                <input type="text" class="form-control"id="Rent_form_reason"  value="1234" disabled readonly>
+                <input type="text" class="form-control"id="Rent_form_g_ID"  value="1234" disabled readonly>
                 </div>
                 <div class="col-2">
                 <label for="Rent_form_reason" class="form-label">物品名稱</label>
-                <input type="text" class="form-control" placeholder="報告使用" id="Rent_form_reason">
+                <input type="text" class="form-control" placeholder="報告使用" id="Rent_form_g_name">
                 </div>
                 <div class="col-2">
                 <label for="Rent_form_reason" class="form-label">庫存數量</label>
-                <input type="text" class="form-control" id="Rent_form_reason" value="1234" disabled readonly>
+                <input type="text" class="form-control" id="Rent_form_g_stock" value="1234" disabled readonly>
                 </div>
                 <div class="col-2">
                 <label for="Rent_form_reason" class="form-label">借用數量</label>
-                <input type="text" class="form-control" placeholder="報告使用" id="Rent_form_reason">
+                <input type="text" class="form-control" placeholder="報告使用" id="Rent_form_quantity">
                 </div>
                 <div class="col-2">
                 <label for="Rent_form_reason" class="form-label">備註</label>
-                <input type="text" class="form-control" placeholder="報告使用" id="Rent_form_reason">
+                <input type="text" class="form-control" placeholder="報告使用" id="Rent_form_note">
                 </div>
                 <div class="col-2">
                     <button type="button" class="btn btn-primary btn-block" onclick="delete_data()">刪除</button>
@@ -97,32 +100,92 @@
 </div>
 </body>
 <script>
+    var teacher_data={};
+    var teacher_email=[];
+    var teacher_name=[];
+    var general_data={};
+    var general_name=[];
+    var general_key=[];
     $(document).ready(function(){
-        loadragicdata();
-    });
-  
-    function loadragicdata(){
-        $.ajax({
-            url:'https://ap3.ragic.com/haisann/forms2/1',
-            method:'get',
-            dataType:'json',
-            success: function(data){
-                console.log(data);
-            },
-        })
+        
+        link_autocomplete_data('Rent_form_g_name');//設定自動填入
 
-    };
+        //連結老師的資料
+        var url='https://ap3.ragic.com/haisann/forms5/1?api=true';
+        var xmlHttp = new XMLHttpRequest();
+        xmlHttp.open( "GET", url, false ); // false for synchronous request
+        xmlHttp.send( null );
+        teacher_data=JSON.parse(xmlHttp.responseText);
+        console.log(teacher_data);
+        for(var i in teacher_data){
+            teacher_email.push(teacher_data[i]["老師電子郵件"]);
+            teacher_name.push(teacher_data[i]["老師名稱"]);
+        };
+        
+        console.log(teacher_email);
+        console.log(teacher_name);
+        $('#Rent_form_teacher').autocomplete({
+             source: teacher_name
+        });
+        
+
+        //#Rent_form_general_name ID 串聯
+        $('#Rent_form_g_name').click(function() {
+            $(this).change(function(){
+                var g_name=$('#Rent_form_g_name').val();
+                for(i in general_data){
+                    if(general_data[i]["財產名稱"]==g_name){
+                        $('#Rent_form_g_ID').val(general_data[i]["財產編號"])
+                        $('#Rent_form_g_stock').val(general_data[i]["財產數量"])
+                    };
+            };
+            });
+        });
+
+    });
+   
+    
     //load time information
     var today= new Date();
     var time=today.getFullYear()+'/'+(today.getMonth()+1)+'/'+today.getDate();
 
+
+    var cloneCount = 1;//clone 
+    //clone sub form and change id
     function append_a_data(){
-        var $form=$('#general_form').clone();
-        $form.insertAfter('#general_form');
+        var $html=$('#general_form').clone().attr('id', 'general_form'+ cloneCount).insertAfter($('[id^=general_form]:last'));
+        $('#general_form'+ cloneCount).find('#Rent_form_g_ID').attr('id','Rent_form_g_ID'+cloneCount);
+        $('#general_form'+ cloneCount).find('#Rent_form_g_name').attr('id','#Rent_form_g_name'+cloneCount);
+        $('#general_form'+ cloneCount).find('#Rent_form_g_stock').attr('id','Rent_form_g_stock'+cloneCount);
+        $('#general_form'+ cloneCount).find('#Rent_form_quantity').attr('id','Rent_form_quantity'+cloneCount);
+        $('#general_form'+ cloneCount).find('#Rent_form_note').attr('id','Rent_form_note'+cloneCount);
+        $('#general_form'+ cloneCount).find('#delete_1').attr('id','delete_'+cloneCount);
+        link_autocomplete_data('Rent_form_g_name'+cloneCount);
+        cloneCount++;
+        
     };
     function delete_data(){
-        var $form=$('#general_form').remove();
+        $('#general_form1').remove();
     };
+    function link_autocomplete_data($id){
+       
+        //連結財產資料
+        var url='https://ap3.ragic.com/haisann/forms2/1?api=true';
+        var xmlHttp = new XMLHttpRequest();
+        xmlHttp.open( "GET", url, false ); // false for synchronous request
+        xmlHttp.send( null );
+        general_data=JSON.parse(xmlHttp.responseText);
+        console.log(general_data);
+        for(var i in general_data){
+            general_key.push(general_data[i]["財產編號"]);
+            general_name.push(general_data[i]["財產名稱"]);
+        };
+        console.log(general_key);
+        console.log(general_name);
+        $('#'+$id).each("input[id=^Rent_form_g_name]").autocomplete({
+             source: general_name
+         });
+    }
 
     function get_form_var(){
         push_data={};
@@ -144,6 +207,20 @@
         push_data['1000136']=a+' '+$('#Rent_form_end_time').val();//結束借用時間
         console.log(push_data);
 
+        //get subform data
+        var sub_id_row=1;
+        $('div[id^=general_form]').each(
+            function(){
+            console.log($(this).attr('id'));
+            push_data['1000144_-'+sub_id_row]=$(this).find('input[id^=Rent_form_g_ID]').val();
+            push_data['1000143_-'+sub_id_row]=$(this).find('input[id^=Rent_form_g_name]').val();
+            push_data['1000376_-'+sub_id_row]=$(this).find('input[id^=Rent_form_g_stock]').val();
+            push_data['1000145_-'+sub_id_row]=$(this).find('input[id^=Rent_form_quantity]').val();
+            push_data['1000379_-'+sub_id_row]=$(this).find('input[id^=Rent_form_note]').val();
+            sub_id_row++;
+            }
+        )
+
         $.ajax({
             url:'https://ap3.ragic.com/haisann/forms2/5?api=true',
             method:'post',
@@ -154,34 +231,12 @@
                     alert('成功借用');
                };
                if (data['status']=='INVALID'){
+                console.log(data);
                     alert('請檢查欄位值');
                };
             },
         });
         // 送出表單
-        function link_teacher_data(){
-        var teacher_data;
-        var name=[];
-        var email=[];
-            $.ajax({
-                url:'https://ap3.ragic.com/haisann/forms5/1?api=true',
-                method:'get',
-                dataType:'json',
-                success: function (data) {
-                    if (data['status']=='SUCCESS'){
-                            alert('成功爬取');
-                            console.log(data);
-                    };
-                },
-            });
-            // for (var i in teacher_data){
-            //     name.push(teacher_data[i]['老師名稱']);
-            //     email.push([i]['老師電子郵件']);
-            // };
-            // console.log(name);
-            // console.log(email);
-        };  
-        // 爬老師產資料
     };
 </script>
 </html>

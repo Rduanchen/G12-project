@@ -1,30 +1,77 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en">
 <head>
-    <title>js test</title>
-    <meta charset="utf-8">
-    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
-
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>jQuery UI Autocomplete - Default functionality</title>
+  <link rel="stylesheet" href="test.css">
+  <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+  <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+  
 </head>
 <body>
-    <div id="index_block"></div>
-    <button onclick="hello()"><a>get data</a></button>
-
-    <script>
-    function hello(){
-    $.ajax({
-        url:'https://raw.githubusercontent.com/Rduanchen/hserpsystem/main/Ragic_iframe.html',
-        method:'get',
-        dataType:'html',
-        success:function(data){
-            console.log(typeof(data));
-            $(document).ready(function(){
-                document.getElementById('index_block').innerHTML=data;
-
-            })
-        },
-    });
-};
-</script>
+  <table border="0" cellspacing="0" cellpadding="4" class="grid" id="details">
+    <thead>
+     <tr>
+      <th scope="col">Codice</th>
+      <th scope="col">Nome</th>
+      <th scope="col">Quantità</th>
+      <th scope="col">Unità di misura</th>
+      <th scope="col">Costo U.</th>
+      <th scope="col">Totale</th>
+     </tr>
+    </thead>
+    <tbody>
+     <tr id="row_0" class="iterable">
+      <td><input type="text" name="det_sku_0" id="det_sku_0" class="sku required" /></td>
+      <td><input type="text" name="det_name_0" id="det_name_0" class="name required" /></td>
+      <td><input name="det_quantity_0" id="det_quantity_0" type="text" class="required" /></td>
+      <td>&nbsp;</td>
+      <td><input name="det_price_0" id="det_price_0" type="text" class="required" />€</td>
+      <td>&nbsp;</td>
+     </tr>
+    </tbody>
+   </table>
+   <ul>
+    <li><a href="javascript:void(0);" id="remove" class="icons icon-0">Rimuovi ultima riga</a></li>
+    <li><a href="javascript:void(0);" id="add" class="icons icon-new">Aggiungi riga</a></li>
+    <li><input type="submit" name="button" id="button" value="Salva tutto" /></li>
+   </ul>
 </body>
+<script>
+function addrow(destination) {
+ rowcount = parseInt(parent_row.attr('id').replace('row_',''))+1;
+ clonecopy = destination.clone();
+ clonecopy.attr("class","iterable");
+ // update numerical suffixes
+ clonecopy.attr("id","row_"+rowcount);
+ clonecopy.find('.sku, .name').val('');
+ clonecopy.find("input[name^='det_sku']").attr({
+  "name": "det_sku_"+rowcount,
+  "id": "det_sku_"+rowcount
+ }).autocomplete({       
+  source: "../json/products.php",       
+  minLength: 2,
+  select: function(event, ui) {
+   $(this).parent().siblings().children('input.name').val(ui.item.name);       
+  }
+ });
+ clonecopy.find("input[name^='det_name']").attr({
+  "name": "det_name_"+rowcount,
+  "id": "det_name_"+rowcount
+ });
+
+ clonecopy.find("select[name^='det_quantity']").attr({
+  "name": "det_quantity_"+rowcount,
+  "id": "det_quantity_"+rowcount
+ });
+ clonecopy.find("select[name^='det_price']").attr({
+  "name": "det_price"+rowcount,
+  "id": "det_price"+rowcount
+ });
+ clonecopy.insertAfter(destination);
+ $('#det_arrayitems').val(rowcount);
+
+}
+</script>
 </html>
