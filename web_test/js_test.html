@@ -29,10 +29,9 @@
         <label for="Rent_form_reason" class="form-label">備註</label>
         <input type="text" class="form-control" placeholder="報告使用" id="Rent_form_note">
         </div>
-        <div class="col-2">
-            <button type="button" class="btn btn-primary btn-block" id="delete_" onclick="delete_data(this.id)">刪除</button>
-        </div>
-        
+       <div class="col-2">
+            <button type="button" class="btn btn-primary btn-block" onclick="delete_data(this.id)">刪除</button>
+       </div>
     </div>
 </div>
 
@@ -51,13 +50,13 @@
     var cloneCount=2;
 
     function clone_and_change_id(){
-        var $html=$('#general_form').clone().attr('id', 'general_form'+ cloneCount).insertAfter($('[id^=general_form]:last'));
+        var $html=$('div[id^=general_form]:first').clone().attr('id', 'general_form'+ cloneCount).insertAfter($('[id^=general_form]:last'));
         $('#general_form'+ cloneCount).find('#Rent_form_g_ID').attr('id','Rent_form_g_ID'+cloneCount);
         $('#general_form'+ cloneCount).find('#Rent_form_g_name').attr('id','#Rent_form_g_name'+cloneCount);
         $('#general_form'+ cloneCount).find('#Rent_form_g_stock').attr('id','Rent_form_g_stock'+cloneCount);
         $('#general_form'+ cloneCount).find('#Rent_form_quantity').attr('id','Rent_form_quantity'+cloneCount);
         $('#general_form'+ cloneCount).find('#Rent_form_note').attr('id','Rent_form_note'+cloneCount);
-        $('#general_form'+ cloneCount).find('#delete_1').attr('id','delete_'+cloneCount);
+        $('#general_form'+ cloneCount).find('#delete_').attr('id','delete_'+cloneCount);
         cloneCount++;
     }
     var sub_val={};

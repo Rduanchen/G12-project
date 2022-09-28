@@ -4,74 +4,142 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>jQuery UI Autocomplete - Default functionality</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js" integrity="sha256-xLD7nhI62fcsEZK2/v8LsBcb4lG7dgULkuXoXB/j91c=" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js" integrity="sha256-6XMVI0zB8cRzfZjqKcD01PBsAy3FlDASrlC8SxCpInY=" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="test.css">
-  <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
-  <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
   
 </head>
 <body>
-  <table border="0" cellspacing="0" cellpadding="4" class="grid" id="details">
-    <thead>
-     <tr>
-      <th scope="col">Codice</th>
-      <th scope="col">Nome</th>
-      <th scope="col">Quantità</th>
-      <th scope="col">Unità di misura</th>
-      <th scope="col">Costo U.</th>
-      <th scope="col">Totale</th>
-     </tr>
-    </thead>
-    <tbody>
-     <tr id="row_0" class="iterable">
-      <td><input type="text" name="det_sku_0" id="det_sku_0" class="sku required" /></td>
-      <td><input type="text" name="det_name_0" id="det_name_0" class="name required" /></td>
-      <td><input name="det_quantity_0" id="det_quantity_0" type="text" class="required" /></td>
-      <td>&nbsp;</td>
-      <td><input name="det_price_0" id="det_price_0" type="text" class="required" />€</td>
-      <td>&nbsp;</td>
-     </tr>
-    </tbody>
-   </table>
-   <ul>
-    <li><a href="javascript:void(0);" id="remove" class="icons icon-0">Rimuovi ultima riga</a></li>
-    <li><a href="javascript:void(0);" id="add" class="icons icon-new">Aggiungi riga</a></li>
-    <li><input type="submit" name="button" id="button" value="Salva tutto" /></li>
-   </ul>
+    <div class="container">
+        <div class="row mbt-3 justify-center">
+            <br>
+            <br>
+            <div class="col-5">
+                <p>  </p>
+            </div>
+            <div class="col-2 justify-center">
+                <h2>借用單資料</h2>
+            </div>
+            <div class="col-5">
+                <P> </P>
+            </div>
+        </div>
+        <form action="https://ap3.ragic.com/haisann/forms2/5?api=true" method="post" id="myForm">
+            <div class="mb-3">
+                <br>
+                <br>
+                <h2>借用單資料</h2>
+                <hr>
+    
+                <label for="Rent_form_name" class="form-label">借用人姓名</label>
+                <input type="text" class="form-control" placeholder="Ex.王小明" id="Rent_form_name" name="1000138">
+    
+                <label for="Rent_form_unit" class="form-label">借用所屬單位</label>
+                <input type="text" class="form-control" placeholder="Ex.十二年級" id="Rent_form_unit" name="1000140">
+    
+                <label for="Rent_form_email" class="form-label">聯絡電郵(email)</label>
+                <input type="email" class="form-control" placeholder="Ex.sample@haisann.com" id="Rent_form_email" name="1000141">
+    
+                <label for="Rent_form_teacher" class="form-label">負責老師</label>
+                <input type="text" class="form-control" id="Rent_form_teacher"  placeholder="Ex.王小華" name="1000142">
+    
+                <label for="Rent_form_reason" class="form-label">借用事由</label>
+                <input type="text" class="form-control" placeholder="Ex.十二年級" id="Rent_form_reason" name="1000346">
+    
+                <label for="Rent_form_start_time" class="form-label">開始借用時間</label>
+                <input type="date" class="form-control" id="Rent_form_start_date" name="f b">
+                <input type="time" class="form-control" id="Rent_form_start_time">
+    
+                <label for="Rent_form_end_time" class="form-label">結束借用時間</label>
+                <input type="date" class="form-control" id="Rent_form_end_date">
+                <input type="time" class="form-control" id="Rent_form_end_time">         
+                <br>
+                <br>
+                <h1>借用物品清單</h1>
+                <hr>
+                <div class="row" id="general_form">
+                    <div class="col-2">
+                    <label for="Rent_form_g_ID" class="form-label">物品編號</label>
+                    <input type="text" class="form-control"id="Rent_form_g_ID"  value="1234" disabled readonly>
+                    </div>
+                    <div class="col-2">
+                    <label for="Rent_form_g_name" class="form-label">物品名稱</label>
+                    <input type="text" class="form-control" placeholder="報告使用" id="Rent_form_g_name">
+                    </div>
+                    <div class="col-2">
+                    <label for="Rent_form_g_stock" class="form-label">庫存數量</label>
+                    <input type="text" class="form-control" id="Rent_form_g_stock" value="1234" disabled readonly>
+                    </div>
+                    <div class="col-2">
+                    <label for="Rent_form_quantity" class="form-label">借用數量</label>
+                    <input type="text" class="form-control" placeholder="報告使用" id="Rent_form_quantity">
+                    </div>
+                    <div class="col-2">
+                    <label for="Rent_form_note" class="form-label">備註</label>
+                    <input type="text" class="form-control" placeholder="報告使用" id="Rent_form_note">
+                    </div>
+                    <div class="col-2">
+                        <button type="button" class="btn btn-primary btn-block" id="delete_" onclick="delete_data(this.id)">刪除</button>
+                    </div>
+                    <br>
+                </div>
+            </div>
+    
+           
+        </form>
+        <div class="row">
+            <hr>
+            <button type="button" class="btn btn-primary btn-block" onclick="append_a_data()">新增一筆資料</button>
+        </div>
+        <div class="row mb-3">
+            <hr>
+            <button type="button" class="btn btn-primary btn-block" onclick="get_form_var()">送出</button>
+            <br>
+        </div>
+    </div>
 </body>
 <script>
-function addrow(destination) {
- rowcount = parseInt(parent_row.attr('id').replace('row_',''))+1;
- clonecopy = destination.clone();
- clonecopy.attr("class","iterable");
- // update numerical suffixes
- clonecopy.attr("id","row_"+rowcount);
- clonecopy.find('.sku, .name').val('');
- clonecopy.find("input[name^='det_sku']").attr({
-  "name": "det_sku_"+rowcount,
-  "id": "det_sku_"+rowcount
- }).autocomplete({       
-  source: "../json/products.php",       
-  minLength: 2,
-  select: function(event, ui) {
-   $(this).parent().siblings().children('input.name').val(ui.item.name);       
-  }
- });
- clonecopy.find("input[name^='det_name']").attr({
-  "name": "det_name_"+rowcount,
-  "id": "det_name_"+rowcount
- });
+    var data=['C','C++','C#','python','java','javascript'];
 
- clonecopy.find("select[name^='det_quantity']").attr({
-  "name": "det_quantity_"+rowcount,
-  "id": "det_quantity_"+rowcount
- });
- clonecopy.find("select[name^='det_price']").attr({
-  "name": "det_price"+rowcount,
-  "id": "det_price"+rowcount
- });
- clonecopy.insertAfter(destination);
- $('#det_arrayitems').val(rowcount);
+    var general_data={};
+    var general_name=[];
+    var general_key=[];
 
-}
+    var url='https://ap3.ragic.com/haisann/forms2/1?api=true';
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.open( "GET", url, false ); // false for synchronous request
+    xmlHttp.send( null );
+    general_data=JSON.parse(xmlHttp.responseText);
+    console.log(general_data);
+    for(var i in general_data){
+        general_key.push(general_data[i]["財產編號"]);
+        general_name.push(general_data[i]["財產名稱"]);
+    };
+    console.log("get general data ssucess fully");
+
+    function set_autocomplete($id){
+        $('#'+$id).autocomplete({
+             source: general_name
+         });
+        console.log("set "+$id+"'s autocomplete sucessfully ");
+    };
+    var cloneCount=1;
+    function append_a_data(){
+        var $html=$('div[id^=general_form]:first').clone().attr('id', 'general_form'+ cloneCount).insertAfter($('[id^=general_form]:last'));
+        $('#general_form'+ cloneCount).find('#Rent_form_g_ID').attr('id','Rent_form_g_ID'+cloneCount);
+        $('#general_form'+ cloneCount).find('#Rent_form_g_name').attr('id','Rent_form_g_name'+cloneCount);
+        $('#general_form'+ cloneCount).find('#Rent_form_g_stock').attr('id','Rent_form_g_stock'+cloneCount);
+        $('#general_form'+ cloneCount).find('#Rent_form_quantity').attr('id','Rent_form_quantity'+cloneCount);
+        $('#general_form'+ cloneCount).find('#Rent_form_note').attr('id','Rent_form_note'+cloneCount);
+        $('#general_form'+ cloneCount).find('#delete_').attr('id','delete_'+cloneCount);
+
+        set_autocomplete("Rent_form_g_name"+cloneCount);
+        cloneCount++;
+    };
+    $(document).ready(function(){
+        set_autocomplete("Rent_form_g_name");
+    })
 </script>
 </html>
