@@ -1,8 +1,8 @@
 #include <stdio.h>
+#include <stdlib.h>
 
-int main(void)
-{
-    int first,sec,third,one=1,two=2,three=3,a,b;
+int main(){
+   /* int first,sec,third,one=1,two=2,three=3,a,b;
     printf("please enter three numbers:");
     scanf("%d%d%d",&first,&sec,&third);
     if (first==one){
@@ -40,5 +40,28 @@ int main(void)
     if (a==3){
         printf("Bingo");
     }
-    return 0;
+    return 0;*/
+    /*int a;
+    int b=19;
+    printf("please enter the number:");
+    scanf("&d",&a);
+    if (a==19){
+        printf("Bingo!!!");
+    }
+    else 
+    printf("");
+    return 0;*/
+
+    int a;
+    printf("enter the number:");
+    scanf("&d",&a);
+    switch (a)
+    {
+    case 5:
+        printf("hello world");
+        break;
+    
+    default:
+        break;
+    }
 }

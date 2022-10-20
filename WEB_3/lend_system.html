@@ -1,0 +1,104 @@
+<div class="container">
+    <div class="row mbt-3 justify-center">
+        <br>
+        <br>
+        <div class="col-5">
+            <p>  </p>
+        </div>
+        <div class="col-2 justify-center">
+            <h2>借用單資料</h2>
+        </div>
+        <div class="col-5">
+            <P> </P>
+        </div>
+    </div>
+    <form>
+        <div class="mb-3">
+            <br>
+            <br>
+            <h2>借用單資料</h2>
+            <hr>
+
+            <label for="Rent_form_name" class="form-label">借用人資料</label>
+            <input type="text" class="form-control" placeholder="Ex.王小明" id="Rent_form_name">
+
+            <label for="Rent_form_unit" class="form-label">借用所屬單位</label>
+            <input type="text" class="form-control" placeholder="Ex.十二年級" id="Rent_form_unit">
+
+            <label for="Rent_form_email" class="form-label">聯絡電郵(email)</label>
+            <input type="email" class="form-control" placeholder="Ex.sample@haisann.com" id="Rent_form_email">
+
+            <label for="Rent_form_teacher" class="form-label">負責老師</label>
+            <input type="text" class="form-control" id="Rent_form_teacher"  placeholder="Ex.王小華">
+
+            <label for="Rent_form_reason" class="form-label">借用事由</label>
+            <input type="text" class="form-control" placeholder="Ex.十二年級" id="Rent_form_reason">
+
+            <label for="Rent_form_start_time" class="form-label">開始借用時間</label>
+            <input type="date" class="form-control" id="Rent_form_start_date">
+            <input type="time" class="form-control" id="Rent_form_start_time">
+
+            <label for="Rent_form_end_time" class="form-label">結束借用時間</label>
+            <input type="date" class="form-control" id="Rent_form_end_date">
+            <input type="time" class="form-control" id="Rent_form_end_time">         
+            <br>
+            <br>
+            <h1>借用物品清單</h1>
+            <hr>
+            <div class="row">
+                <div class="col-2">
+                <label for="Rent_form_reason" class="form-label">物品編號</label>
+                <input type="text" class="form-control"id="Rent_form_reason"  value="1234" disabled readonly>
+                </div>
+                <div class="col-2">
+                <label for="Rent_form_reason" class="form-label">物品名稱</label>
+                <input type="text" class="form-control" placeholder="報告使用" id="Rent_form_reason">
+                </div>
+                <div class="col-2">
+                <label for="Rent_form_reason" class="form-label">庫存數量</label>
+                <input type="text" class="form-control" id="Rent_form_reason" value="1234" disabled readonly>
+                </div>
+                <div class="col-2">
+                <label for="Rent_form_reason" class="form-label">借用數量</label>
+                <input type="text" class="form-control" placeholder="報告使用" id="Rent_form_reason">
+                </div>
+                <div class="col-2">
+                <label for="Rent_form_reason" class="form-label">備註</label>
+                <input type="text" class="form-control" placeholder="報告使用" id="Rent_form_reason">
+                </div>
+            </div>  
+            <br>
+            <!--add js function to keep copy following code-->
+            <!--
+            <div class="row">
+                <div class="col-2">
+                <input type="text" class="form-control"id="Rent_form_reason"  value="1234" disabled readonly>
+                </div>\
+                <div class="col-2">
+                <input type="text" class="form-control" placeholder="報告使用" id="Rent_form_reason">
+                </div>
+                <div class="col-2">
+                <input type="text" class="form-control" id="Rent_form_reason" value="1234" disabled readonly>
+                </div>
+                <div class="col-2">
+                <input type="text" class="form-control" placeholder="報告使用" id="Rent_form_reason">
+                </div>
+                <div class="col-2">
+                <input type="text" class="form-control" placeholder="報告使用" id="Rent_form_reason">
+                </div>
+            </div>
+            -->
+        </div>
+
+       
+    </form>
+    <div class="row">
+        <hr>
+        <button type="button" class="btn btn-primary btn-block">新增一筆借用單</button>
+    </div>
+    <div class="row mb-3">
+        <hr>
+        <button type="button" class="btn btn-primary btn-block">送出</button>
+        <br>
+    </div>
+</div>

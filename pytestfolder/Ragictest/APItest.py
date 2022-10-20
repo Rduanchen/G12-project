@@ -10,6 +10,13 @@ header={
 param={
     
 }
+
+b='https://ap3.ragic.com/haisann/forms2/5?api=true'
+c='https://ap3.ragic.com/haisann/forms2/1?api=true'
+
+
+r=req.get(b)
+print(r.text)
 # pushdata={
 #     '1000164':'2022/09/07',
 #     '1000135':'2022/09/08 10:00',
@@ -30,6 +37,9 @@ filter_parms={
     "info":"false",
     "info":"true"
 }
-filter_parms_json=json.dumps(filter_parms)
-r=req.get(url,headers=header,params=filter_parms)
-print(r.text)
+
+
+
+# filter_parms_json=json.dumps(filter_parms)
+# r=req.get(url,headers=header,params=filter_parms)
+# print(r.text)
