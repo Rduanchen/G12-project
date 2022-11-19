@@ -8,7 +8,11 @@
     <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js" integrity="sha256-xLD7nhI62fcsEZK2/v8LsBcb4lG7dgULkuXoXB/j91c=" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js" integrity="sha256-6XMVI0zB8cRzfZjqKcD01PBsAy3FlDASrlC8SxCpInY=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/jquery.multiselect/1.13/jquery.multiselect.js"></script>
+    <!-- <link href="chosen.css" rel="stylesheet">
+    <script src="chose.js"></script> -->
     <link rel="stylesheet" href="test.css">
+    <link>
 
 </head>
 <body>
@@ -42,11 +46,14 @@
             <label for="Rent_form_email" class="form-label">聯絡電郵(email)</label>
             <input type="email" class="form-control" placeholder="Ex.sample@haisann.com" id="Rent_form_email" name="1000141">
 
-
+            <label for="Rent_form_teacher" class="form-label">單位負責人員(負責老師)</label>
+            <br>
+            <div class="select">
             <select class="form-select" aria-label="Default select example" id="Rent_form_teacher" placeholder="Ex.王小華" name="1000142">
                 <option value="1">請選擇老師</option>
             </select>
-
+            </div>
+            <br>
             <label for="Rent_form_reason" class="form-label">借用事由</label>
             <input type="text" class="form-control" placeholder="Ex.十二年級" id="Rent_form_reason" name="1000346">
 
@@ -71,8 +78,11 @@
                 <input type="text" class="form-control"id="Rent_form_g_ID"  value="1234" disabled readonly>
                 </div>
                 <div class="col-2">
-                <label for="Rent_form_g_name" class="form-label">物品名稱</label>
-                <input type="text" class="form-control" placeholder="報告使用" id="Rent_form_g_name">
+                <!-- <label for="Rent_form_g_name" class="form-label">物品名稱</label>
+                <input type="text" class="form-control" placeholder="報告使用" id="Rent_form_g_name"> -->
+                <select class="js-searchBox" aria-label="Default select example" id="Rent_form_teacher" placeholder="Ex.王小華" name="1000142">
+                    <option value="1">請選擇器材</option>
+                </select>
                 </div>
                 <div class="col-2">
                 <label for="Rent_form_g_stock" class="form-label">庫存數量</label>
@@ -104,9 +114,29 @@
         <button type="button" class="btn btn-primary btn-block" onclick="get_form_var()">送出</button>
         <br>
     </div>
+    <script src='./jsfile.js'></script>
+    <script>
+        $('.js-searchBox').searchBox({ elementWidth: '250'});
+    </script>
 </div>
 </body>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.3/dist/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js" integrity="sha256-xLD7nhI62fcsEZK2/v8LsBcb4lG7dgULkuXoXB/j91c=" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js" integrity="sha256-6XMVI0zB8cRzfZjqKcD01PBsAy3FlDASrlC8SxCpInY=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/jquery.multiselect/1.13/jquery.multiselect.js"></script>
+<!-- <link href="chosen.css" rel="stylesheet">
+<script src="chose.js"></script> -->
+<link rel="stylesheet" href="test.css">
+
 <script>
+
+
     //variabel area
     var teacher_data={};
     var teacher_email=[];
@@ -163,6 +193,7 @@
     for(var i in teacher_name){
         $('<option value="'+num+'">'+teacher_name[i]+"</option>").insertAfter( $("#Rent_form_teacher").find("option:last"))
         num++;
+        // .find("option:last")
     };
         console.log("teacher's data already be prepared");
 
@@ -285,7 +316,7 @@ for(var i in Temp_G_list){
 console.log(Temp_G_list);
 clone_general_stock_to_html();
 }
-
+//根據id 回傳資料
 function clone_general_stock_to_html(){
     console.log("enter the clone_general_stock_to_html");
     for(var i in Temp_G_list){
@@ -368,11 +399,17 @@ function add_event_listener($id){
 }
 
 function link_autocomplete_data($id){
-        $('#'+$id).autocomplete({
-             source: general_name
-         });
-        console.log("set "+$id+"'s autocomplete sucessfully ");
-    };
+    var num=1;
+    for(var i in general_name){
+        $('<option value="'+num+'">'+general_name[i]+"</option>").insertAfter( $('#'+$id).find("option:last"))
+        num++;
+        // .find("option:last")
+    };    
+    // $('#'+$id).autocomplete({
+    //          source: general_name
+    //      });
+    //     console.log("set "+$id+"'s autocomplete sucessfully ");
+}
 
 
 //load time information
@@ -581,7 +618,37 @@ function verify_data(){
         add_event_listener('Rent_form_g_name');
         Parse_lend_form_info();
 
-    });
+        
+
+
+
+        $(".form-select").chosen({
+             width: "75%"
+        });
+        $("#Rent_form_teacher").change(function(e, chosen) {
+            $a = $("<div/>", {
+            text: chosen.selected
+            }).append(
+            $("<span/>", {
+                text: "x",
+                on: {
+                click: function() {
+                    $(this).parent().remove();
+                }
+                }
+            })).appendTo("#selectedlist");
+        });
+
+            });
    
+
+
+
+//autocomplete with select
+
+// $(document).ready(function() {
+  
+
+// });
 </script>
 </html>

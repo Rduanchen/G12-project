@@ -47,3 +47,12 @@
     -moz-border-radius: 0px;
     background-image: none;
 }
+
+
+.multiselect-all label {
+    font-weight: bold;
+  }
+  .multiselect-search {
+    color: red;
+  }
+      

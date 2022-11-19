@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>借用系統</title>
+    <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <link rel="stylesheet" href="test.css">
+    <link rel="stylesheet" href="./testbootstrap.css">
+
+</head>
+<body>
+<div class="container">
+    <div class="row mbt-3 justify-center">
+        <br>
+        <br>
+        <div class="col-5">
+            <p>  </p>
+        </div>
+        <div class="col-2 justify-center">
+            <h2>借用單資料</h2>
+        </div>
+        <div class="col-5">
+            <P> </P>
+        </div>
+    </div>
+    <form id="myForm">
+        <div class="mb-3">
+            <br>
+            <br>
+            <h2>借用單資料</h2>
+            <hr>
+
+            <label for="Rent_form_name" class="form-label">借用人姓名</label>
+            <input type="text" class="form-control" placeholder="Ex.王小明" id="Rent_form_name" name="1000138">
+
+            <label for="Rent_form_unit" class="form-label">借用所屬單位</label>
+            <input type="text" class="form-control" placeholder="Ex.十二年級" id="Rent_form_unit" name="1000140">
+
+            <label for="Rent_form_email" class="form-label">聯絡電郵(email)</label>
+            <input type="email" class="form-control" placeholder="Ex.sample@haisann.com" id="Rent_form_email" name="1000141">
+
+            <div class="Search_select_box">
+                <select class="selectpicker" data-live-search="true" aria-label="Default select example" id="Rent_form_teacher" placeholder="Ex.王小華" name="1000142">
+                    <option value="0">請選擇老師</option>
+                </select>
+            </div>
+            
+
+            <label for="Rent_form_reason" class="form-label">借用事由</label>
+            <input type="text" class="form-control" placeholder="Ex.十二年級" id="Rent_form_reason" name="1000346">
+
+            <label for="Rent_form_start_time" class="form-label">開始借用時間</label>
+            <input type="date" class="form-control" id="Rent_form_start_date" name="f b">
+            <input type="time" class="form-control" id="Rent_form_start_time">
+
+            <label for="Rent_form_end_time" class="form-label">結束借用時間</label>
+            <input type="date" class="form-control" id="Rent_form_end_date">
+            <input type="time" class="form-control" id="Rent_form_end_time">         
+
+            <label for="Rent_form_remark" class="form-label">借用事由</label>
+            <input type="text" class="form-control" placeholder="Ex.可以在此填入特殊借用器具" id="Rent_form_remark" name="1000146">
+
+            <br>
+            <br>
+            <h1>借用物品清單</h1>
+            <hr>
+            <div class="row" id="general_form">
+                <div class="col-2">
+                <label for="Rent_form_g_ID" class="form-label">物品編號</label>
+                <input type="text" class="form-control"id="Rent_form_g_ID1"  value="1234" disabled readonly>
+                </div>
+                <div class="col-2">
+                <label for="Rent_form_g_name1" class="form-label">general_name</label>
+                <div class="Search_select_box">
+                    <select class="selectpicker" data-live-search="true" id="Rent_form_g_name1" onchange="link_and_change_data(this.id)">
+                        <option value="0">chose a general</option>
+                    </select>
+                </div>
+                </div>
+                <div class="col-2">
+                <label for="Rent_form_g_stock" class="form-label">庫存數量</label>
+                <input type="text" class="form-control" id="Rent_form_g_stock1" value="1234" disabled readonly>
+                </div>
+                <div class="col-2">
+                <label for="Rent_form_quantity" class="form-label">借用數量</label>
+                <input type="text" class="form-control" placeholder="報告使用" id="Rent_form_quantity1">
+                </div>
+                <div class="col-2">
+                <label for="Rent_form_note" class="form-label">備註</label>
+                <input type="text" class="form-control" placeholder="報告使用" id="Rent_form_note1">
+                </div>
+                <div class="col-2">
+                    <button type="button" class="btn btn-primary btn-block" id="delete_" onclick="delete_data(this.id)">刪除</button>
+                </div>
+                <br>
+            </div>
+        </div>
+
+       
+    </form>
+    <div class="row">
+        <hr>
+        <button type="button" class="btn btn-primary btn-block" onclick="append_a_data()">新增一筆資料</button>
+    </div>
+    <div class="row mb-3">
+        <hr>
+        <button type="button" class="btn btn-primary btn-block" onclick="get_form_var()">送出</button>
+        <br>
+    </div>
+</div>
+<!-- jquery -->
+<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js" integrity="sha256-xLD7nhI62fcsEZK2/v8LsBcb4lG7dgULkuXoXB/j91c=" crossorigin="anonymous"></script>
+
+<!-- bootstrap -->
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.3/dist/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
+
+</body>
+
+<script>
+    //variabel area
+    var teacher_data={};
+    var teacher_email=[];
+    var teacher_name=[];
+    var general_name=[];
+    var general_key=[];
+    var general_stock=[];
+    var push_data={};
+    var $time={};
+    var error_messeage='\n';
+
+    var lend_info=[]; //organize general_data form data.
+    var lend_info_original=[];
+    var G_data={};  //claw from web,General_data
+    var lend_form=[];//user typing
+    var Temp_G_list=[];//Save Temp general data, for cauculating.
+    var general_data={};//original General data.
+    
+    var today= new Date();
+    var time=today.getFullYear()+'/'+(today.getMonth()+1)+'/'+today.getDate();
+    var cloneCount = 2;//clone 
+
+    //------------get data area----------------//
+
+    //get [財產資料]並且分析至陣列 要做自動填入使用
+    var url='https://ap3.ragic.com/haisann/forms2/1?api=true';
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.open( "GET", url, false ); // false for synchronous request
+    xmlHttp.send( null );
+    general_data=JSON.parse(xmlHttp.responseText);
+    console.log(general_data);
+    for(var i in general_data){
+        general_key.push(general_data[i]["財產編號"]);
+        general_name.push(general_data[i]["財產名稱"]);
+        general_stock.push(general_data[i]["財產數量"]);
+    };
+    // console.log("get general data ssucess fully");
+
+    //*******************//
+
+    //連結老師的資料
+    var url='https://ap3.ragic.com/haisann/forms5/1?api=true';
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.open( "GET", url, false ); // false for synchronous request
+    xmlHttp.send( null );
+    teacher_data=JSON.parse(xmlHttp.responseText);
+    console.log(teacher_data);
+    for(var i in teacher_data){
+        teacher_email.push(teacher_data[i]["老師電子郵件"]);
+        teacher_name.push(teacher_data[i]["老師名稱"]);
+    };
+        // set SELECT to the input box
+    var num=1;
+    for(var i in teacher_name){
+        $('<option value="'+num+'">'+teacher_name[i]+"</option>").insertAfter( $("#Rent_form_teacher").find("option:last"))
+        num++;
+    };
+        console.log("teacher's data already be prepared");
+
+    var count=0;
+    console.log("Doing the parse Lend form info()")
+    var url='https://ap3.ragic.com/haisann/forms2/5?api=true';
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.open( "GET", url, false ); // false for synchronous request
+    xmlHttp.send( null );
+    lend_info_untidy=JSON.parse(xmlHttp.responseText);        
+    //claw Rent_Form data,and convert to json 
+        
+
+
+    
+
+    //------------------------------------------//
+
+
+
+//----------Define function area------------//
+
+
+
+//uncheck
+
+
+function Parse_lend_form_info(){
+    for(var i in lend_info_untidy){
+        lend_info.push({
+            "lend_form_id":lend_info_untidy[i]["借用單編號"],
+            "start_time":lend_info_untidy[i]["借用時間"],
+            "end_time":lend_info_untidy[i]["歸還時間"],
+            "return":lend_info_untidy[i]["歸還完成?"],
+            "general_data":[]
+        })
+        for(var x in lend_info_untidy[i]["_subtable_1000148"]){
+            lend_info[count]["general_data"].push({
+                "G_name":lend_info_untidy[i]["_subtable_1000148"][x]["借用物品"],
+                "G_id":lend_info_untidy[i]["_subtable_1000148"][x]["編號"],
+                "G_num":lend_info_untidy[i]["_subtable_1000148"][x]["借用數量"]
+            })    
+        }
+        count++;
+    }
+    //clean data which didn't useful and save to Lend_info
+    console.log(lend_info)
+    console.log("lend_info push_complete")
+    //Sucessfull!! Tested at 2022/10/10
+} 
+
+
+
+function Parse_data_to_temp_datalist(){
+    console.log("join the Parse_data_to_temp_datalist()");
+    lend_form=[];
+    Temp_G_list=[];
+    //tested at 2022/10/10 working well
+
+$('div[id^=general_form]').each(function(){
+    lend_form.push({
+        "G_ID":$(this).find('input[id^=Rent_form_g_ID]').val(),
+        "G_name":general_name[$(this).find('select[id^=Rent_form_g_name]').val()-1],
+        "G_lend_num":$(this).find('input[id^=Rent_form_g_stock]').val(),
+    })
+});
+console.log(lend_form);
+
+for(var i in lend_form){
+    for(var y in general_key){
+        if(general_key[y]==lend_form[i]["G_ID"]){
+            console.log("hey");
+            console.log(general_key[y])
+            console.log(lend_form[i]["G_ID"])
+            Temp_G_list.push({
+                "G_ID":lend_form[i]["G_ID"],
+                "G_name":lend_form[i]["G_name"],
+                "G_stock":general_stock[y]
+            })
+         
+        }
+    }
+}
+
+console.log("after transfer data");
+console.log(lend_form);
+console.log("Temp G list:");
+console.log(Temp_G_list);
+console.log(lend_info);
+minus_lend_form_data();
+
+}
+
+
+//減去相同的資料
+function minus_lend_form_data(){
+    console.log("working at the minus_lend_form_data");
+//Don't working
+for(var i in Temp_G_list){
+    console.log("hey");
+    for(var x in lend_info){
+        console.log("hello");
+        for(var y in lend_info[x]["general_data"]){
+            // console.log(lend_info[x]["general_data"][y]["G_name"])
+            // console.log(Temp_G_list[i]["G_name"])
+
+            if(lend_info[x]["general_data"][y]["G_name"]==Temp_G_list[i]["G_name"]){
+                //start comparing
+                // console.log(lend_info[x]["general_data"][y]["G_num"]);
+                // console.log(Temp_G_list[i]["G_stock"]);
+                Temp_G_list[i]["G_stock"]-=lend_info[x]["general_data"][y]["G_num"];
+                //test
+                // delete lend_info[x]["general_data"][y]["G_name"];
+            }
+            console.log(Temp_G_list[i]["G_stock"]);
+        }
+    }
+}
+console.log(Temp_G_list);
+clone_general_stock_to_html();
+}
+
+function clone_general_stock_to_html(){
+    console.log("enter the clone_general_stock_to_html");
+    for(var i in Temp_G_list){
+        $('div[id^=general_form]').each(function(){
+        if(general_name[$(this).find('select[id^=Rent_form_g_name]').val()-1]==Temp_G_list[i]["G_name"]){
+            var $G_stock=0;
+            if(Temp_G_list[i]["G_stock"]>0){
+                $G_stock=Temp_G_list[i]["G_stock"];
+            }
+            console.log("HHEEYY");
+            var $id=$(this).find('input[id^=Rent_form_g_stock]').attr("id");
+            $('#'+$id).val($G_stock);
+        }
+    })
+    }
+}
+
+function Time_data_exam(){
+        // function: delete lend_info which not in the time zone.
+        //tested in 2022/10/10. Working well.
+
+        var $time={};    //aset up time value
+        $time["start"]=$('#Rent_form_start_date').val()+'T'+$('#Rent_form_start_time').val();//get start lend time
+        $time["end"]=$('#Rent_form_end_date').val()+'T'+$('#Rent_form_end_time').val();//get end lend time
+        // console.log($time);//test out put
+        
+        //convert time to Date object
+        var form_start_time=Date.parse($time["start"]);
+        var form_end_time=Date.parse($time["end"]);
+
+        //start comparing useless data
+        for(var i in lend_info){
+            
+            var start_time=Date.parse(lend_info[i]["start_time"]);
+            var end_time=Date.parse(lend_info[i]["end_time"]);
+            var test=lend_info[i]["return"];
+            
+            if (end_time<form_end_time && start_time<form_start_time){
+                delete lend_info[i];
+            }
+            if (end_time>form_end_time && start_time>form_start_time){
+                delete lend_info[i];
+            }
+            if(test=="yes"){
+                delete lend_info[i];
+            }
+        }
+        console.log(lend_info);
+    }
+
+
+// event listener of link stock and id
+
+function link_and_change_data($id){
+    console.log("Now in the link and change data function");
+    var countid=$id.slice(-1);
+    var g_name=$('#'+$id).val();
+    console.log(g_name);
+    g_name=parseInt(g_name)
+    g_name-=1;
+    console.log(general_key[g_name],general_stock[g_name],'#Rent_form_g_ID'+countid);
+    $('#Rent_form_g_ID'+countid).val(general_key[g_name]);
+    $('#Rent_form_g_stock'+countid).val(general_stock[g_name]);
+    Parse_data_to_temp_datalist(); 
+};
+
+
+function add_event_listener($id){
+    console.log($id+' changed sucessfully');
+    console.log($time);
+        $($id).click(function(){
+            $($id).select(function(){
+                console.log("event listener was active")
+                link_and_change_data($id);
+                console.log("finish");
+                Parse_data_to_temp_datalist();
+            });
+        })
+        
+}
+
+function link_autocomplete_data($id){  
+        console.log("set "+$id+"'s autocomplete sucessfully ");
+        var num=1;
+        for(var i in general_name){
+            $('<option value="'+num+'">'+general_name[i]+"</option>").insertAfter( $('#'+$id).find("option:last"))
+            num++;
+        };
+        $('#'+$id).selectpicker();
+    };
+
+
+//load time information
+    
+    //clone sub form and change id
+
+//append a new row of general 
+function append_a_data(){
+    var $html=$('div[id^=general_form]:first').clone().attr('id', 'general_form'+ cloneCount).insertAfter($('[id^=general_form]:last'));
+    $('#general_form'+ cloneCount).find('#Rent_form_g_ID').attr('id','Rent_form_g_ID'+cloneCount);
+    $('#general_form'+ cloneCount).find('#Rent_form_g_name').attr('id','Rent_form_g_name'+cloneCount);
+    $('#general_form'+ cloneCount).find('#Rent_form_g_ID').val("");
+    $('#general_form'+ cloneCount).find('#Rent_form_g_name').val("");
+    $('#general_form'+ cloneCount).find('#Rent_form_g_stock').attr('id','Rent_form_g_stock'+cloneCount);
+    $('#general_form'+ cloneCount).find('#Rent_form_g_stock').val("")
+    $('#general_form'+ cloneCount).find('#Rent_form_quantity').attr('id','Rent_form_quantity'+cloneCount);
+    $('#general_form'+ cloneCount).find('#Rent_form_note').attr('id','Rent_form_note'+cloneCount);
+    $('#general_form'+ cloneCount).find('#delete_').attr('id','delete_'+cloneCount);
+
+    link_autocomplete_data("Rent_form_g_name"+cloneCount);
+    add_event_listener('Rent_form_g_name'+cloneCount)
+    cloneCount++;
+};
+//delete a row in the data
+function delete_data($id){
+    console.log($id);
+    console.log(typeof($id));
+    $('#'+$id).parent().parent().remove();
+
+}
+
+
+//get form data to push_data
+function get_form_var(){
+
+    push_data['1000138']=$('#Rent_form_name').val();//借用人姓名
+    push_data['1000164']=time; //填單日期(自動設定)
+    push_data['1000140']=$('#Rent_form_unit').val();//借用單位
+    push_data['1000141']=$('#Rent_form_email').val();//電子郵件
+    push_data['1000142']=$('#Rent_form_teacher option:selected').text();// 負責老師名稱
+    push_data['1000346']=$('#Rent_form_reason').val();//借用理由
+    push_data['1000140']=$('#Rent_form_unit').val();//借用單位
+    push_data['1000146']=$('#Rent_form_remark').val();//借用單位
+    push_data['1000393']='haisannsystem@gmail.com';
+    //------for verify data------//
+    
+    $time["start"]=$('#Rent_form_start_date').val()+'T'+$('#Rent_form_start_time').val();
+    $time["end"]=$('#Rent_form_end_date').val()+'T'+$('#Rent_form_end_time').val();
+    console.log($time);
+    //-----//
+
+    var a=$('#Rent_form_start_date').val();//擷取開始借用日期
+    a=a.replace(/-/g,'/'); 
+    push_data['1000135']=a+' '+$('#Rent_form_start_time').val();//借用開始時間
+    a=$('#Rent_form_end_date').val();//擷取結束時間
+    a=a.replace(/-/g,'/');
+    push_data['1000136']=a+' '+$('#Rent_form_end_time').val();//結束借用時間
+
+
+    var input_value=$('#Rent_form_teacher option:selected').text();
+    console.log(input_value)
+    for(var i in teacher_name){
+        if(teacher_name[i]==input_value){
+            push_data['1000162']=teacher_email[i];
+            push_data['1000165']=teacher_email[i];
+            break;
+        }
+    }
+
+    console.log(push_data);
+    
+    //擷取子表格資料ea
+    var sub_id_row=1;
+    $('div[id^=general_form]').each(
+        function(){
+        push_data['1000144_-'+sub_id_row]=$(this).find('input[id^=Rent_form_g_ID]').val();
+        push_data['1000143_-'+sub_id_row]=$(this).find('input[id^=Rent_form_g_name] option:selected').text();
+        push_data['1000376_-'+sub_id_row]=$(this).find('input[id^=Rent_form_g_stock]').val();
+        push_data['1000145_-'+sub_id_row]=$(this).find('input[id^=Rent_form_quantity]').val();
+        push_data['1000379_-'+sub_id_row]=$(this).find('input[id^=Rent_form_note]').val();
+        sub_id_row++;
+        }
+    )
+    verify_data();
+    //get subform data
+};
+
+function send_request(){
+    $.ajax({
+        url:'https://ap3.ragic.com/haisann/forms2/5?api=true',
+        method:'post',
+        data:push_data,
+        dataType: 'json',
+        success: function (data) {
+            if (data['status']=='SUCCESS'){
+                alert('成功借用');
+            };
+            if (data['status']=='INVALID'){
+            console.log(data);
+                alert('請檢查欄位值');
+            };
+        },
+    });
+}
+
+//before end request, Exame data
+
+
+function verify_data(){
+    error_messeage=''
+    if(push_data['1000138']==''){
+        error_messeage+="借用人姓名不可為空\n";
+
+    }; 
+    //借用人姓名
+    if(push_data['1000138']==''){
+        error_messeage+="借用單位不可為空\n";
+    }; 
+    // 借用單位
+    if(push_data['1000141']==''){
+        error_messeage+="電子郵件不可為空\n";
+    }; 
+    //電子郵件
+    if(push_data['1000142']==''){
+        error_messeage+="負責老師不可為空\n";
+    }
+
+    if(push_data['1000140']==''){
+        error_messeage+="借用單位不可為空\n";
+    }
+
+    // for(var i in push_data){
+    //     var reg=/^1000145_-/;
+    //     if(reg.test(push_data[i])==true){
+    //         if(push_data[i])
+    //     }
+    // }
+    
+
+    if($time["start"] && $time["end"]!='T'){
+        console.log("jump in to time verify");
+        var verify_time_today=today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+        verify_data_today=Date.parse(verify_time_today);
+        verify_time_start=Date.parse($time["start"]);
+        verify_time_end=Date.parse($time["end"]);
+        console.log(verify_time_end+'\n'+verify_time_start+'\n'+verify_time_today+'\n')
+        if(verify_time_start<verify_data_today){
+            error_messeage+="開始日期必須大於現在時間\n";
+        }
+        if(verify_time_end<verify_time_start){
+            error_messeage+="結束借用時間必須大於借用時間\n";
+        }
+        
+    }
+    else{
+        error_messeage+="請填入時間\n";
+    }
+
+    $('div[id^=general_form]').each(function(){
+        if($(this).find('input[id^=Rent_form_g_stock]').val()<=$(this).find('input[id^=Rent_form_quantity]').val()){
+            error_messeage+="無法提供足夠數量耗材\n"
+        }
+    });
+    if (error_messeage!=[]){
+        alert(error_messeage);
+    }
+    else if(error_messeage==[]){
+        send_request();
+    }
+}
+
+
+ //event listener
+
+    //event listener of Date
+
+    //exam that value of the input area in not null & Do Date_not_null_exam();
+    //listener triger
+    $("#Rent_form_start_time").on("click",function(){
+        $("#Rent_form_start_time").on("change",function(){
+            Date_not_null_exam();
+        })
+    })
+    $("#Rent_form_end_time").on("click",function(){
+        $("#Rent_form_end_time").on("change",function(){
+            Date_not_null_exam();
+        })
+    })
+
+        //exame function
+        function Date_not_null_exam(){
+            if($('#Rent_form_start_date').val() && $('#Rent_form_start_time').val()!=""){
+                if($('#Rent_form_end_date').val() && $('#Rent_form_end_time').val() !=""){
+                    Time_data_exam();
+                }
+            }
+
+        }
+
+    //tested at 2022/10/10 Sucessfully
+    //---------------------end of listener-------------------------//
+
+//Process control
+    link_autocomplete_data('Rent_form_g_name1',);
+    $(".selectpicker").each(function(){ $(this).selectpicker(); });
+   
+    // when document ready
+        add_event_listener('Rent_form_g_name1');
+        Parse_lend_form_info();
+    
+    
+
+   
+    // $('.search_select_box select').selectpicker();
+    
+    // $("#Rent_form_g_name").selectpicker()
+   
+</script>
+</html>

@@ -1,21 +1,28 @@
 from distutils.log import info
+from email import header
 import requests as req
 import json
 
-url="https://ap3.ragic.com/haisann/forms2/5?api=true"
+# url="https://ap3.ragic.com/haisann/forms2/5?api=true"
+url2='http://haisiannerpsys.org/hsweb/sub_index_web/Consumabels_apply_form.html'
+
+
 header={
-    "Authorization":"Basic cEg1bCtoV040TFBzYVA3REs1cGJBUW5mSjUwWm1kOExrRXVWenkzM3R0V0krVGE0UDlkOFpJUXlKSEdsektUUjR2ZXgxV21vSXVjPQ=="
+    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36 Edg/106.0.1370.47'
 }
+# header={
+#     "Authorization":"Basic cEg1bCtoV040TFBzYVA3REs1cGJBUW5mSjUwWm1kOExrRXVWenkzM3R0V0krVGE0UDlkOFpJUXlKSEdsektUUjR2ZXgxV21vSXVjPQ=="
+# }
 
-param={
+# param={
     
-}
+# }
 
-b='https://ap3.ragic.com/haisann/forms2/5?api=true'
-c='https://ap3.ragic.com/haisann/forms2/1?api=true'
+# b='https://ap3.ragic.com/haisann/forms2/5?api=true'
+# c='https://ap3.ragic.com/haisann/forms2/1?api=true'
 
 
-r=req.get(b)
+r=req.get(url2,headers=header)
 print(r.text)
 # pushdata={
 #     '1000164':'2022/09/07',
@@ -33,10 +40,10 @@ print(r.text)
 # }
 # pushdata_json=json.dumps(pushdata)
 #  "where":"1000135,gte,2022/09/08",
-filter_parms={
-    "info":"false",
-    "info":"true"
-}
+# filter_parms={
+#     "info":"false",
+#     "info":"true"
+# }
 
 
 

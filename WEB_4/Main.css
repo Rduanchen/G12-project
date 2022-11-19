@@ -1,0 +1,47 @@
+.holl{
+    background-color:#caf0f8ff !important;
+}
+.title_area{
+    background-color:#90e0efff ;
+}
+#Function_area{
+    width: 100%;
+    padding: 2em;
+    background-color:  #bbd0ffff;
+    /* border-radius: 20px; */
+}
+#Title_logo{
+    width:auto ;
+    height: 150px;
+    background-color: #90e0efff ;
+}
+
+#Notification_title{
+    margin: 5px;
+    background-color: midnight-blue;
+    border: solid;
+    font-size: 30px;
+    border-radius: 10px;
+}
+#Notification_containt{
+    background-color:rgba(79, 79, 221, 0.999);
+    border: solid;
+    height: 250px;
+}
+#Function_Bar{
+    height: auto;
+    font-weight: auto;
+    margin: 5px;
+    padding: 5px;
+    border-radius: 10px;
+    background-color:#90e0efff;
+}
+#Sub_function_bar{
+    width: auto;
+    height: auto;
+    padding: 20px;
+    background-color: #b8c0ffff;
+}
+#Card_of_homepage{
+    background-color: #90e0efff !important;
+}

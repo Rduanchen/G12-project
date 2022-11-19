@@ -1,81 +1,37 @@
-<!DOCTYPE html>
 <html>
-
-<head>
-    <title>海聲總務系統</title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="icon" href="HS_Logo.png"><!--add Hs logo-->
-    <link rel="stylesheet" href="Main.css">
-    <!--import bootstrap(CDN)-->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
-    <!--import Jquery -->
-    <script
-    src="https://code.jquery.com/jquery-3.6.0.js"
-    integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
-    crossorigin="anonymous">
-    </script>
-    </head>
-
-<body class="holl">
-    <!--Set Title Block-->
-    <header class="title_area">
-        <div class="container">
-            <div class="row">
-                <!-- <div class="col-4">
-                    <img id="Title_logo" src="haisann_logo_withoutbackground.png" class="figure-img img-fluid rounded">
-                </div> -->
-                <h1 class="header-logo">
-                    <a href="./" id="Title_logo" title="首頁">
-                        <img src="haisann_logo_withoutbackground.png" alt="國立公共資訊圖書館">
-                    </a>
-                </h1>
-                  <!--set memo bar-->
-                <div class="col-8 btn-group">
-                    <div class="topNav" role="navigation" aria-label="右上方功能選單">
-                        <a id="tabU" href="#" title="上方導覽連結區" accesskey="U">:::</a>
-                        <a href="Others/SiteMap.htm" class="col-auto" title="提供瞭解網站整體架構及鍵盤快捷鍵">網站導覽</a>
-                        <a href="https://www.nlpi.edu.tw/ReaderService/AccessibilityServiceArea" class="col-auto" title="提供無障礙專區介紹">無障礙專區</a>
-                        <a href="Information/OpenTime" class="col-auto" title="開放時間">開放時間</a>
-                        <a href="ReaderService/ServiceMail" class="col-auto" title="開啟郵件應用程式">意見信箱</a>
-                        <a href="English/" class="col-auto" title="英文版網站">EN</a>
-                    </div>
-                    <!-- <div class="row">
-                        <p class="col-12"> hi</p>
-                        <br>
-                    </div>
-                    <div class=" col-12 btn-group" role="group" aria-label="Basic mixed styles example">
-                        <button type="button" class="btn btn-info"><a class="nav-link active" href="file:///C:/Users/cheny/OneDrive/%E6%A1%8C%E9%9D%A2/G12%20Program%20Folder/WEB/Main.html#">首頁</a></button>
-                        <button type="button" class="btn btn-info"><a class="nav-link link" href="https://www.google.com/">系統介紹</a></button>
-                        <button type="button" class="btn btn-info"><a class="nav-link link" href="https://getbootstrap.com/docs/5.2/getting-started/download/">使用說明</a></button>
-                        <button type="button" class="btn btn-info"><a class="nav-link link" href="https://www.google.com/search?q=verticla&oq=verticla&aqs=edge..69i57j0i10i433j0i10l7.3589j0j1&sourceid=chrome&ie=UTF-8">系統教學影片</a></button>
-                    </div>
-                    <div class="row">
-                        <p class="col-12"> hi</p>
-                        <br>
-                    </div> -->
-                </div>
-            </div>
-            <div id="Function_area">
-                <div class="justify-content-center">
-                  
-                    <!--Sub function Bar-->
-                </div>
-                <div class="row">
-                    <div class="btn-group" role="group" aria-label="Basic example">
-                        <button type="button" class="btn btn-primary">財產借用系統</button>
-                        <button type="button" class="btn btn-primary">耗材申請系統</button>
-                        <button type="button" class="btn btn-primary">財產資料查詢</button>
-                        <button type="button" class="btn btn-primary">常衝突財產借用系統</button>
-                        <button type="button" class="btn btn-primary">場地借用系統</button>
-                        <button type="button" class="btn btn-primary">回饋系統</button>                    
-                    </div>     
-                
-                </div>
-            </div>
-        </div>
-        
-    </header>
+  <head>
+    <link rel="stylesheet" href="./testbootstrap.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
+  </head>
+<body>
+  <div class="container">
+    <div class="search_select_box" >
+      <select class="selectpicker"data-live-search="true" id="read"> 
+        <!-- data-show-subtext="true"  -->
+        <option data-subtext="Rep California">Tom Foolery</option>
+        <option data-subtext="Sen California">Bill Gordon</option>
+        <option data-subtext="Sen Massacusetts">Elizabeth Warren</option>
+        <option data-subtext="Rep Alabama">Mario Flores</option>
+        <option data-subtext="Rep Alaska">Don Young</option>
+        <option data-subtext="Rep California" disabled="disabled">Marvin Martinez</option>
+      </select>
     </div>
+  </div>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.3/dist/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
+
 </body>
+<script>
+    $(document).ready(function(){
+        $('.search_select_box select').selectpicker();
+        $('#read').select(function(){
+          console.log($('#read').val());
+        })
+        
+    })
+    
+</script>
 </html>
