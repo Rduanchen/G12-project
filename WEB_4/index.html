@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>海聲總務系統</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="icon" href="./photo/HS_Logo.png"><!--add Hs logo-->
+    <link rel="stylesheet" href="./index.css">
+
+      <!--import bootstrap(CDN)-->
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+      <!--import Jquery -->
+      <script
+      src="https://code.jquery.com/jquery-3.6.0.js"
+      integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+      crossorigin="anonymous">
+      </script>
+</head>
+
+<body class="holl">
+    <!--Set Title Block-->
+    <header>
+        <div class="container">
+            <div class="title_area">
+            <nav class="navbar text-bg-light">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="#">
+                    <img src="./photo/haisann_logo_withoutbackground.png" alt="Logo" class="d-inline-block align-text-top" id="Title_logo">
+                    </a>
+                    <a class="nav-link active" aria-current="page" href="#">主頁</a>
+                    <a class="nav-link disabled">說明文件</a>
+                    <a class="nav-link disabled">網站介紹</a>
+                    <a class="nav-link disabled">說明影片</a> 
+            </nav>
+            </div>
+        </div>
+    </header>
+    
+    
+    <div class="container">
+        <div id="Function_area">
+            <div class="row justify-content-center">
+                <div class="btn-group" role="group" aria-label="Basic example">
+                    <button type="button" class="btn btn-primary"><a href="./index.html" style="color: white ;" ">主頁</a></button>
+                    <button type="button" class="btn btn-primary"><a onclick="find_form_url('lend')">財產借用系統</a></button>
+                    <button type="button" class="btn btn-primary"><a onclick="find_form_url('apply_consumables')">耗材申請系統</a></button>
+                    <button type="button" class="btn btn-primary"><a onclick="find_form_url('Search_General')">財產資料查詢</a></button>
+                    <button type="button" class="btn btn-primary"><a onclick="find_form_url('feedback')">回饋系統</a></button>            
+                </div>     
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div id="index_block">
+            <!--contain card area-->
+            <div class="row">
+                <div class="row row-cols-1 row-cols-md-4 g-4">
+                <div class="col">
+                    <div class="card h-100" id="Card_of_homepage">
+                        <img src="./photo/lendsystem.JPG" class="card-img-top">
+                        <div class="card-body">
+                          <h5 class="card-title">借用系統</h5>
+                          <p class="card-text">在這裡您可以借用您想借的工具</p>
+                          <a class="btn btn-primary" onclick="find_form_url('lend')">前往借用系統</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card h-100" id="Card_of_homepage">
+                        <img src="./photo/Serch_General.jpg" class="card-img-top">
+                        <div class="card-body">
+                            <h5 class="card-title">財產查詢系統</h5>
+                            <p class="card-text">這裡您可以查詢學校有哪一些器材</p>
+                            <a onclick="find_form_url('Search_General)" class="btn btn-primary">前往財產查詢系統</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card h-100" id="Card_of_homepage">
+                        <img src="./photo/lendsystem.JPG" class="card-img-top">
+                        <div class="card-body">
+                          <h5 class="card-title">借用進度查詢系統</h5>
+                          <p class="card-text">這裡可以查詢您的借用單的審核進度以及其它的借用單</p>
+                          <a class="btn btn-primary"  onclick="find_form_url('lend_status')" >前往借用系統</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card h-100" id="Card_of_homepage">
+                        <img src="./photo/Consume_sys.JPG" class="card-img-top">
+                        <div class="card-body">
+                            <h5 class="card-title">耗材申請系統</h5>
+                            <p class="card-text">教室的衛生紙、肥皂、粉筆用完了嗎?沒關係，我們可以協助你申請新的。</p>
+                            <a class="btn btn-primary" onclick="find_form_url('apply_consumables')">前往耗材申請系統</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card h-100" id="Card_of_homepage">
+                        <img src="./photo/Repar_sys.JPG" class="card-img-top">
+                        <div class="card-body">
+                            <h5 class="card-title">報修系統</h5>
+                            <p class="card-text">東西壞掉了嗎?沒關係，這裡可以協助你通報</p>
+                            <a class="btn btn-primary" onclick="find_form_url('repaire')">前往常衝突物品借用系統</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card h-100" id="Card_of_homepage">
+                        <img src="./photo/Consume_sys.JPG" class="card-img-top">
+                        <div class="card-body">
+                            <h5 class="card-title">建議購買系統</h5>
+                            <p class="card-text">想要申請一些新的東西嗎?向總務老師推薦您學校值得購買的東西吧!</p>
+                            <a class="btn btn-primary" onclick="find_form_url('recommand')">前往耗材申請系統</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card h-100" id="Card_of_homepage">
+                        <img src="./photo/feedback.JPG" class="card-img-top">
+                        <div class="card-body">
+                            <h5 class="card-title">回饋系統</h5>
+                            <p class="card-text">請協助我找到現在系統地問題，或是您也可以在這邊填入您對於這套系統的建議。</p>
+                            <a class="btn btn-primary" onclick="find_form_url('feedback')">前往回饋系統</a>
+                        </div>
+                    </div>
+                </div>
+                </div>
+            </div>    
+        </div>
+    </div>
+</body>
+<script>
+    var root_url='https://haisiannerpsys.org'
+    var FormName_url_list={
+        'home':'./index.html',
+        'lend':'./Lend_web_lentsystem.html',
+        'Search_General':'https://ap3.ragic.com/haisann/forms2/1?webview&webaction=twoRow',
+        'apply_consumables':'https://ap3.ragic.com/haisann/forms4/2?webview&webaction=form&ver=new&dfCheckbox',
+        'feedpback':'https://ap3.ragic.com/haisann/forms5/4?webview&webaction=form&ver=new&dfCheckbox',
+        'lend_status':'https://ap3.ragic.com/haisann/forms2/5?webview&webaction=query',
+        'recommand':'https://ap3.ragic.com/haisann/forms6/3?webview&webaction=form&ver=new&version=1',
+        'repaire':'https://ap3.ragic.com/haisann/forms6/4?webview&webaction=form&ver=new&dfCheckbox'
+    }
+    function find_form_url(name){
+        var url=FormName_url_list[name];
+        add_html(url);
+    }
+    function add_html(url){
+        $('<iframe />');  // Create an iframe element
+        $('#index_block').empty();
+        $('#index_block').html($('<iframe />',{
+            src: url,
+            sandbox:"allow-modals allow-forms allow-popups allow-scripts allow-same-origin",
+            style:"border:none;overflow-x:hidden;overflow-y:hidden;width:100%;height:100vh"
+        }))
+    }
+    
+</script>
+
+</html>
+

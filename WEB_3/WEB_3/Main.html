@@ -5,7 +5,7 @@
     <title>海聲總務系統</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="icon" href="./photo/HS_Logo.png"><!--add Hs logo-->
+    <link rel="icon" href="HS_Logo.png"><!--add Hs logo-->
     <link rel="stylesheet" href="Main.css">
     <!--import bootstrap(CDN)-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
@@ -39,10 +39,12 @@
                 <!--Sub function Bar-->
                 <div class="btn-group" role="group" aria-label="Basic example">
                     <button type="button" class="btn btn-primary" id="lend_system"><a href="./Main.html" style="color: aliceblue;">主頁</a></button>
-                    <button type="button" class="btn btn-primary" id="lend_system" ><a href="./Lend_web_lentsystem.html" style="color: aliceblue" target="_blank">財產借用系統</a></button>
-                    <button type="button" class="btn btn-primary" onclick="get_conflict_form()"><a href="./sub_index_web/Consumabels_apply_form.html" target="_blank" style="color: aliceblue">耗材申請系統</a></button>
-                    <button type="button" class="btn btn-primary" onclick="Serch_general()"><a href="https://ap3.ragic.com/haisann/forms2/1?webview&webaction=twoRow" target="_blank" style="color: aliceblue">財產資料查詢</a></button>
-                    <button type="button" class="btn btn-primary"><a href="https://ap3.ragic.com/haisann/forms5/4?webview&webaction=form&ver=new&dfCheckbox" style="color: aliceblue"  target="_blank">回饋系統</a></button>                    
+                    <button type="button" class="btn btn-primary" id="lend_system" onclick="get_lend_form()" >財產借用系統</button>
+                    <button type="button" class="btn btn-primary" onclick="get_conflict_form()">耗材申請系統</button>
+                    <button type="button" class="btn btn-primary" onclick="Serch_general()">財產資料查詢</button>
+                    <button type="button" class="btn btn-primary">常衝突財產借用系統</button>
+                    <button type="button" class="btn btn-primary">場地借用系統</button>
+                    <button type="button" class="btn btn-primary">回饋系統</button>                    
                 </div>     
             </div>
         </div>
@@ -54,31 +56,31 @@
                 <div class="row row-cols-1 row-cols-md-3 g-4">
                 <div class="col">
                     <div class="card h-100" id="Card_of_homepage">
-                        <img src="./photo/lendsystem.JPG" class="card-img-top" height="60%">
+                        <img src="./photo/lendsystem.JPG" class="card-img-top">
                         <div class="card-body">
                           <h5 class="card-title">借用系統</h5>
                           <p class="card-text">在這裡您可以借用班級內需要用到的工具</p>
-                          <a href="./Lend_web_lentsystem.html" class="btn btn-primary"  target="_blank"">前往借用系統</a>
+                          <a href="./Lend_web_lentsystem.html" class="btn btn-primary" onclick="get_lend_form()">前往借用系統</a>
                         </div>
                     </div>
                 </div>
                 <div class="col">
                     <div class="card h-100" id="Card_of_homepage">
-                        <img src="./photo/Serch_General.jpg" class="card-img-top"  height="60%">
+                        <img src="./photo/Serch_General.jpg" class="card-img-top">
                         <div class="card-body">
                             <h5 class="card-title">財產查詢系統</h5>
                             <p class="card-text">在這裡您可以借用班級內需要用到的工具</p>
-                            <a href="https://ap3.ragic.com/haisann/forms2/1?webview&webaction=twoRow" target="_blank" class="btn btn-primary">前往財產查詢系統</a>
+                            <a href="#" class="btn btn-primary">前往財產查詢系統</a>
                         </div>
                     </div>
                 </div>
                 <div class="col">
                     <div class="card h-100" id="Card_of_homepage">
-                        <img src="./photo/Consume_sys.JPG" class="card-img-top"  height="60%">
+                        <img src="./photo/Consume_sys.JPG" class="card-img-top">
                         <div class="card-body">
                             <h5 class="card-title">耗材申請系統</h5>
                             <p class="card-text">教室的衛生紙、肥皂、粉筆用完了嗎?沒關係，我們可以協助你申請新的。</p>
-                            <a class="btn btn-primary" href="./sub_index_web/Consumabels_apply_form.html" target="_blank">前往耗材申請系統</a>
+                            <a href="#" class="btn btn-primary">前往耗材申請系統</a>
                         </div>
                     </div>
                 </div>
@@ -88,17 +90,27 @@
                         <div class="card-body">
                             <h5 class="card-title">報修系統</h5>
                             <p class="card-text">東西壞掉了嗎?沒關係，這裡可以協助你通報</p>
-                            <a href="https://ap3.ragic.com/haisann/forms6/4?webview&webaction=form&ver=new&dfCheckbox" target="_blank" class="btn btn-primary">前往報修物品系統</a>
+                            <a href="#" class="btn btn-primary">前往常衝突物品借用系統</a>
                         </div>
                     </div>
                 </div>
+                <!-- <div class="col">
+                    <div class="card h-100" id="Card_of_homepage">
+                        <img src="HS_Logo - Copy.png" class="card-img-top">
+                        <div class="card-body">
+                            <h5 class="card-title">場地借用系統</h5>
+                            <p class="card-text">教室的衛生紙、肥皂、粉筆用完了嗎?沒關係，我們可以協助你申請新的。</p>
+                            <a href="#" class="btn btn-primary">前往場地借用系統</a>
+                        </div>
+                    </div>
+                </div> -->
                 <div class="col">
                     <div class="card h-100" id="Card_of_homepage">
                         <img src="./photo/feedback.JPG" class="card-img-top">
                         <div class="card-body">
                             <h5 class="card-title">回饋系統</h5>
                             <p class="card-text">請協助我找到現在系統地問題，或是您也可以在這邊填入您對於這套系統的建議。</p>
-                            <a href="https://ap3.ragic.com/haisann/forms5/4?webview&webaction=form&ver=new&dfCheckbox" target="_blank" class="btn btn-primary">前往回饋系統</a>
+                            <a href="#" class="btn btn-primary">前往回饋系統</a>
                         </div>
                     </div>
                 </div>
@@ -123,7 +135,36 @@
         <p></p>
 </body>
 <script>
+function get_lend_form(){
+    // window.open("Lend_web_lentsystem.html",'_blank')
+    // // window.location.href="Lend_web_lentsystem.html"
+    // var test = new XMLHttpRequest();
+    // test.open('GET','https://raw.githubusercontent.com/Rduanchen/hserpsystem.github.io/main/WEB_2/Lend_web_lentsystem.html');
+    // test.send(null);
 
+    // test.onload=function(){
+    //     if(test.status==200){
+    //         document.getElementById('index_block').innerHTML=test.responseText;
+    //     };
+    // };
+
+    var $html="<iframe src="+"./Lend_web_lentsystem.html frameborder="+'0'+" width="+'100%'+"height="+"1000px"+"></iframe>"
+    document.getElementById('index_block').innerHTML=$html;
+};
+
+function Serch_general(){
+    $.ajax({
+        url:'https://raw.githubusercontent.com/Rduanchen/hserpsystem/main/WEB_2/sub_index_web/Serch_general.html',
+        method:'get',
+        dataType:'Text',
+        success:function(data){
+            console.log(typeof(data));
+            $(document).ready(function(){
+                document.getElementById('index_block').innerHTML=data;
+            })
+        },
+    });
+};
 
 </script>
 

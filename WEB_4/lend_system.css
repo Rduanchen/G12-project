@@ -1,3 +1,20 @@
+.serch_select_box{
+    max-width: 400px;
+    margin: 80px auto;
+}
+.serch_select_box select{
+    width: 400px;
+    margin: 80px auto;
+}
+.serch_select_box button{
+    background-color: #080342 !important;
+    padding:  15px 25px;
+    color: #fff !important;
+    font-size: 20px;
+}
+.selectpicker{
+    width: min-content;
+}
 .ui-autocomplete {
     position: absolute;
     top: 100%;

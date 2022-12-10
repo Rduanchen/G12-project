@@ -5,30 +5,16 @@
     <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
     
-    <link rel="stylesheet" href="test.css">
-    <link rel="stylesheet" href="./testbootstrap.css">
+    <link rel="stylesheet" href="./lend_system.css">
 
 </head>
 <body>
 <div class="container">
-    <div class="row mbt-3 justify-center">
-        <br>
-        <br>
-        <div class="col-5">
-            <p>  </p>
-        </div>
-        <div class="col-2 justify-center">
-            <h2>借用單資料</h2>
-        </div>
-        <div class="col-5">
-            <P> </P>
-        </div>
-    </div>
     <form id="myForm">
         <div class="mb-3">
             <br>
             <br>
-            <h2>借用單資料</h2>
+            <p class="h2">借用單資料<p>
             <hr>
 
             <label for="Rent_form_name" class="form-label">借用人姓名</label>
@@ -71,8 +57,8 @@
                 <input type="text" class="form-control"id="Rent_form_g_ID1"  value="1234" disabled readonly>
                 </div>
                 <div class="col-2">
-                <label for="Rent_form_g_name1" class="form-label">general_name</label>
-                <div class="Search_select_box">
+                <label for="Rent_form_g_name1" class="form-label">耗材名稱</label>
+                <div class="Search_select_box" id="Rent_form_g_name_box1">
                     <select class="selectpicker" data-live-search="true" id="Rent_form_g_name1" onchange="link_and_change_data(this.id)">
                         <option value="0">chose a general</option>
                     </select>
@@ -280,7 +266,6 @@ function minus_lend_form_data(){
 for(var i in Temp_G_list){
     console.log("hey");
     for(var x in lend_info){
-        console.log("hello");
         for(var y in lend_info[x]["general_data"]){
             // console.log(lend_info[x]["general_data"][y]["G_name"])
             // console.log(Temp_G_list[i]["G_name"])
@@ -369,27 +354,26 @@ function link_and_change_data($id){
 
 
 function add_event_listener($id){
-    console.log($id+' changed sucessfully');
+    console.log($id+' add event listener sucessfully');
     console.log($time);
         $($id).click(function(){
-            $($id).select(function(){
+            $($id).change(function(){
                 console.log("event listener was active")
                 link_and_change_data($id);
-                console.log("finish");
                 Parse_data_to_temp_datalist();
             });
         })
-        
 }
 
-function link_autocomplete_data($id){  
+function link_autocomplete_data($id,cloneCount){  
+
         console.log("set "+$id+"'s autocomplete sucessfully ");
         var num=1;
         for(var i in general_name){
             $('<option value="'+num+'">'+general_name[i]+"</option>").insertAfter( $('#'+$id).find("option:last"))
             num++;
         };
-        $('#'+$id).selectpicker();
+        $(".selectpicker").each(function(){ $(this).selectpicker(); });
     };
 
 
@@ -400,26 +384,34 @@ function link_autocomplete_data($id){
 //append a new row of general 
 function append_a_data(){
     var $html=$('div[id^=general_form]:first').clone().attr('id', 'general_form'+ cloneCount).insertAfter($('[id^=general_form]:last'));
-    $('#general_form'+ cloneCount).find('#Rent_form_g_ID').attr('id','Rent_form_g_ID'+cloneCount);
-    $('#general_form'+ cloneCount).find('#Rent_form_g_name').attr('id','Rent_form_g_name'+cloneCount);
-    $('#general_form'+ cloneCount).find('#Rent_form_g_ID').val("");
-    $('#general_form'+ cloneCount).find('#Rent_form_g_name').val("");
-    $('#general_form'+ cloneCount).find('#Rent_form_g_stock').attr('id','Rent_form_g_stock'+cloneCount);
-    $('#general_form'+ cloneCount).find('#Rent_form_g_stock').val("")
-    $('#general_form'+ cloneCount).find('#Rent_form_quantity').attr('id','Rent_form_quantity'+cloneCount);
-    $('#general_form'+ cloneCount).find('#Rent_form_note').attr('id','Rent_form_note'+cloneCount);
+    $('#general_form'+ cloneCount).find('#Rent_form_g_ID1').attr('id','Rent_form_g_ID'+cloneCount);
+    // $('#general_form'+ cloneCount).find('#Rent_form_g_name1').attr('id','Rent_form_g_name'+cloneCount);
+    $('#general_form'+ cloneCount).find('.bootstrap-select').remove();
+
+    $('#general_form'+ cloneCount).find('#Rent_form_g_name_box1').attr('id','Rent_form_g_name_box'+cloneCount);
+
+    var $cloned =' <select class="selectpicker" data-live-search="true" id="Rent_form_g_name'+cloneCount+'" onchange="link_and_change_data(this.id)">'+'<option value="0">chose a general</option>'+'</select>'
+    $('#Rent_form_g_name_box'+cloneCount).html($cloned);
+    // $('#Rent_form_g_name_box'+cloneCount).find('.selectpicker').selectpicker('render'); 
+    
+    $('#general_form'+ cloneCount).find('#Rent_form_g_ID1').val("");
+    $('#general_form'+ cloneCount).find('#Rent_form_g_name1').val("");
+    $('#general_form'+ cloneCount).find('#Rent_form_g_stock1').attr('id','Rent_form_g_stock'+cloneCount);
+    $('#general_form'+ cloneCount).find('#Rent_form_g_stock1').val("")
+    $('#general_form'+ cloneCount).find('#Rent_form_quantity1').attr('id','Rent_form_quantity'+cloneCount);
+    $('#general_form'+ cloneCount).find('#Rent_form_note1').attr('id','Rent_form_note'+cloneCount);
     $('#general_form'+ cloneCount).find('#delete_').attr('id','delete_'+cloneCount);
 
-    link_autocomplete_data("Rent_form_g_name"+cloneCount);
+    link_autocomplete_data("Rent_form_g_name"+cloneCount,cloneCount);
     add_event_listener('Rent_form_g_name'+cloneCount)
     cloneCount++;
 };
+
 //delete a row in the data
 function delete_data($id){
     console.log($id);
     console.log(typeof($id));
     $('#'+$id).parent().parent().remove();
-
 }
 
 
@@ -550,8 +542,11 @@ function verify_data(){
     }
 
     $('div[id^=general_form]').each(function(){
-        if($(this).find('input[id^=Rent_form_g_stock]').val()<=$(this).find('input[id^=Rent_form_quantity]').val()){
-            error_messeage+="無法提供足夠數量耗材\n"
+        if($(this).find('input[id^=Rent_form_g_stock]').val()<$(this).find('input[id^=Rent_form_quantity]').val()){
+            error_messeage+="無法提供足夠數量的器材\n"
+        }
+        if(int($(this).find('input[id^=Rent_form_g_stock]').val())==0){
+            error_messeage+='財產借用數量不可為0,於'+$(this).find('input[id^=Rent_form_g_name]').val()
         }
     });
     if (error_messeage!=[]){
@@ -596,17 +591,8 @@ function verify_data(){
 //Process control
     link_autocomplete_data('Rent_form_g_name1',);
     $(".selectpicker").each(function(){ $(this).selectpicker(); });
-   
     // when document ready
-        add_event_listener('Rent_form_g_name1');
-        Parse_lend_form_info();
-    
-    
-
-   
-    // $('.search_select_box select').selectpicker();
-    
-    // $("#Rent_form_g_name").selectpicker()
-   
+    add_event_listener('Rent_form_g_name1');
+    Parse_lend_form_info();
 </script>
 </html>
